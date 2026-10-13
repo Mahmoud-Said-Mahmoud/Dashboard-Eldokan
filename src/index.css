@@ -1,0 +1,547 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* ElDokan dashboard typography */
+html,
+body,
+#root {
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+html[lang='ar'],
+html[lang='ar'] body,
+html[lang='ar'] #root,
+[dir='rtl'] {
+  font-family: 'Cairo', Arial, sans-serif;
+}
+
+html[lang='en'],
+html[lang='en'] body,
+html[lang='en'] #root,
+[dir='ltr'] {
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+/* Keep form controls consistent with the active dashboard language. */
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+
+/* ElDokan responsive foundation - v1.75.48 */
+html, body, #root {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.eldokan-responsive-content,
+.eldokan-page {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.eldokan-page img,
+.eldokan-page svg,
+.eldokan-page canvas {
+  max-width: 100%;
+}
+
+/* Keep data tables usable on touch screens without breaking desktop layouts. */
+.eldokan-page .overflow-x-auto {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+@media (max-width: 1023px) {
+  .eldokan-page {
+    width: 100%;
+  }
+
+  .eldokan-page header,
+  .eldokan-page form {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .eldokan-page {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1.25rem !important;
+  }
+
+  .eldokan-page h1 {
+    font-size: 1.75rem !important;
+    line-height: 2.1rem !important;
+  }
+
+  .eldokan-page h2 {
+    line-height: 1.6rem;
+  }
+
+  .eldokan-page .rounded-3xl {
+    border-radius: 1rem !important;
+  }
+
+  .eldokan-page .p-20 {
+    padding: 2rem 1rem !important;
+  }
+
+  .eldokan-page table {
+    font-size: 0.78rem;
+  }
+
+  .eldokan-page table th,
+  .eldokan-page table td {
+    padding: 0.65rem 0.75rem !important;
+  }
+
+  .eldokan-page input,
+  .eldokan-page select,
+  .eldokan-page textarea {
+    max-width: 100%;
+  }
+
+  .eldokan-page button,
+  .eldokan-page a {
+    touch-action: manipulation;
+  }
+
+  .eldokan-page [class*="grid-cols-3"] {
+    min-width: 0;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .eldokan-page {
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+  }
+}
+
+/* ElDokan mobile/tablet single-column table cards - v1.75.49 */
+@media (max-width: 1023px) {
+  .eldokan-page .eldokan-table-scroll-wrapper {
+    overflow: visible !important;
+  }
+
+  .eldokan-page .eldokan-stack-table,
+  .eldokan-page .eldokan-stack-table thead,
+  .eldokan-page .eldokan-stack-table tbody,
+  .eldokan-page .eldokan-stack-table tr,
+  .eldokan-page .eldokan-stack-table th,
+  .eldokan-page .eldokan-stack-table td {
+    display: block;
+    width: 100%;
+  }
+
+  .eldokan-page .eldokan-stack-table {
+    min-width: 0 !important;
+    border-collapse: separate;
+    border-spacing: 0;
+    background: transparent;
+  }
+
+  .eldokan-page .eldokan-stack-table thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .eldokan-page .eldokan-stack-table tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .eldokan-page .eldokan-stack-table tbody > tr {
+    border: 1px solid rgb(226 232 240 / 1);
+    border-radius: 1rem;
+    background: #ffffff;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgb(15 23 42 / 0.04);
+  }
+
+  .eldokan-page .eldokan-stack-table tbody > tr > td:not([colspan]),
+  .eldokan-page .eldokan-stack-table tbody > tr > th:not([colspan]) {
+    display: grid;
+    grid-template-columns: minmax(110px, 42%) minmax(0, 1fr);
+    align-items: start;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem !important;
+    border: 0;
+    text-align: start !important;
+    white-space: normal !important;
+    word-break: break-word;
+  }
+
+  .eldokan-page .eldokan-stack-table tbody > tr > td:not([colspan])::before,
+  .eldokan-page .eldokan-stack-table tbody > tr > th:not([colspan])::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 0.74rem;
+    line-height: 1.1rem;
+    font-weight: 800;
+    color: rgb(100 116 139 / 1);
+  }
+
+  .eldokan-page .eldokan-stack-table tbody > tr > td[data-label='']:not([colspan]),
+  .eldokan-page .eldokan-stack-table tbody > tr > th[data-label='']:not([colspan]) {
+    grid-template-columns: 1fr;
+  }
+
+  .eldokan-page .eldokan-stack-table tbody > tr > td[data-label='']:not([colspan])::before,
+  .eldokan-page .eldokan-stack-table tbody > tr > th[data-label='']:not([colspan])::before {
+    display: none;
+  }
+
+  .eldokan-page .eldokan-stack-table tbody > tr > td + td,
+  .eldokan-page .eldokan-stack-table tbody > tr > th + th,
+  .eldokan-page .eldokan-stack-table tbody > tr > th + td,
+  .eldokan-page .eldokan-stack-table tbody > tr > td + th {
+    border-top: 1px solid rgb(241 245 249 / 1);
+  }
+
+  .eldokan-page .eldokan-stack-table tbody > tr > td[colspan],
+  .eldokan-page .eldokan-stack-table tbody > tr > th[colspan] {
+    display: block;
+    width: 100%;
+    padding: 1rem !important;
+    border-top: 1px solid rgb(241 245 249 / 1);
+  }
+
+  .eldokan-page .eldokan-stack-table tbody > tr:hover {
+    background: #ffffff;
+  }
+
+  .eldokan-page .eldokan-stack-table .min-w-\[220px\],
+  .eldokan-page .eldokan-stack-table .min-w-\[180px\] {
+    min-width: 0 !important;
+  }
+
+  .eldokan-page .eldokan-stack-table .flex.min-w-\[220px\].items-center.gap-3 {
+    align-items: flex-start;
+  }
+}
+
+/* ElDokan v1.75.50 - mobile/tablet UX polish */
+@media (max-width: 1023px) {
+  /* More comfortable page rhythm */
+  .eldokan-page {
+    padding-top: 0.875rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .eldokan-page > * + * {
+    scroll-margin-top: 5rem;
+  }
+
+  /* Touch-friendly controls */
+  .eldokan-page button,
+  .eldokan-page a[role='button'],
+  .eldokan-page input,
+  .eldokan-page select {
+    min-height: 44px;
+  }
+
+  .eldokan-page button[class*='h-8'],
+  .eldokan-page button[class*='h-9'],
+  .eldokan-page button[class*='w-8'],
+  .eldokan-page button[class*='w-9'] {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .eldokan-page input,
+  .eldokan-page select,
+  .eldokan-page textarea {
+    font-size: 16px;
+  }
+
+  /* Stacked-table cards: stronger visual hierarchy */
+  .eldokan-page .eldokan-stack-table tbody {
+    gap: 1rem;
+  }
+
+  .eldokan-page .eldokan-stack-table tbody > tr {
+    border-radius: 1.15rem;
+    border-color: rgb(226 232 240 / 1);
+    box-shadow: 0 4px 14px rgb(15 23 42 / 0.06);
+  }
+
+  .eldokan-page .eldokan-stack-table tbody > tr > td:not([colspan]),
+  .eldokan-page .eldokan-stack-table tbody > tr > th:not([colspan]) {
+    grid-template-columns: minmax(100px, 38%) minmax(0, 1fr);
+    gap: 0.8rem;
+    padding: 0.95rem 1rem !important;
+  }
+
+  .eldokan-page .eldokan-stack-table tbody > tr > td:not([colspan])::before,
+  .eldokan-page .eldokan-stack-table tbody > tr > th:not([colspan])::before {
+    font-size: 0.72rem;
+    letter-spacing: 0.01em;
+  }
+
+  /* Dedicated Product cards */
+  .eldokan-page .eldokan-products-table tbody > tr:not(.bg-slate-50\/80) {
+    border-top: 3px solid rgb(34 197 94 / 1);
+  }
+
+  .eldokan-page .eldokan-products-table td[data-label='Product'],
+  .eldokan-page .eldokan-products-table td[data-label='المنتج'] {
+    display: block !important;
+    background: linear-gradient(180deg, rgb(248 250 252 / 1), #fff);
+    padding: 1rem !important;
+  }
+
+  .eldokan-page .eldokan-products-table td[data-label='Product']::before,
+  .eldokan-page .eldokan-products-table td[data-label='المنتج']::before {
+    display: none !important;
+  }
+
+  .eldokan-page .eldokan-products-table td[data-label='Actions'],
+  .eldokan-page .eldokan-products-table td[data-label='الإجراءات'] {
+    display: block !important;
+    background: rgb(248 250 252 / 1);
+  }
+
+  .eldokan-page .eldokan-products-table td[data-label='Actions']::before,
+  .eldokan-page .eldokan-products-table td[data-label='الإجراءات']::before {
+    margin-bottom: 0.75rem;
+  }
+
+  .eldokan-page .eldokan-products-table td[data-label='Actions'] > div,
+  .eldokan-page .eldokan-products-table td[data-label='الإجراءات'] > div {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(44px, 1fr));
+    gap: 0.6rem !important;
+  }
+
+  .eldokan-page .eldokan-products-table td[data-label='Actions'] button,
+  .eldokan-page .eldokan-products-table td[data-label='الإجراءات'] button {
+    width: 100% !important;
+    min-width: 44px;
+    min-height: 46px;
+  }
+
+  /* Dedicated Order cards */
+  .eldokan-page .eldokan-orders-table tbody > tr:not([class*='details']) {
+    border-top: 3px solid rgb(15 23 42 / 1);
+  }
+
+  .eldokan-page .eldokan-orders-table td[data-label='Order Number'],
+  .eldokan-page .eldokan-orders-table td[data-label='رقم الطلب'] {
+    background: rgb(248 250 252 / 1);
+    font-size: 1rem;
+  }
+
+  .eldokan-page .eldokan-orders-table td[data-label='Status'],
+  .eldokan-page .eldokan-orders-table td[data-label='الحالة'] {
+    background: rgb(248 250 252 / 0.75);
+  }
+
+  .eldokan-page .eldokan-orders-table td[data-label='Actions'],
+  .eldokan-page .eldokan-orders-table td[data-label='الإجراءات'] {
+    display: block !important;
+    background: rgb(248 250 252 / 1);
+  }
+
+  .eldokan-page .eldokan-orders-table td[data-label='Actions']::before,
+  .eldokan-page .eldokan-orders-table td[data-label='الإجراءات']::before {
+    margin-bottom: 0.75rem;
+  }
+
+  .eldokan-page .eldokan-orders-table td[data-label='Actions'] > div,
+  .eldokan-page .eldokan-orders-table td[data-label='الإجراءات'] > div {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    gap: 0.55rem !important;
+  }
+
+  .eldokan-page .eldokan-orders-table td[data-label='Actions'] button,
+  .eldokan-page .eldokan-orders-table td[data-label='الإجراءات'] button {
+    width: 100%;
+    min-height: 46px;
+    justify-content: center;
+  }
+
+  /* Keep expanded detail rows visually attached to the card above */
+  .eldokan-page .eldokan-orders-table tbody > tr > td[colspan],
+  .eldokan-page .eldokan-products-table tbody > tr > td[colspan] {
+    background: rgb(248 250 252 / 1);
+    border-radius: 0.85rem;
+  }
+}
+
+@media (max-width: 479px) {
+  .eldokan-page {
+    padding-left: 0.625rem !important;
+    padding-right: 0.625rem !important;
+  }
+
+  .eldokan-page .eldokan-stack-table tbody > tr > td:not([colspan]),
+  .eldokan-page .eldokan-stack-table tbody > tr > th:not([colspan]) {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .eldokan-page .eldokan-stack-table tbody > tr > td:not([colspan])::before,
+  .eldokan-page .eldokan-stack-table tbody > tr > th:not([colspan])::before {
+    margin-bottom: 0.15rem;
+  }
+
+  .eldokan-page .eldokan-products-table td[data-label='Actions'] > div,
+  .eldokan-page .eldokan-products-table td[data-label='الإجراءات'] > div {
+    grid-template-columns: repeat(2, minmax(44px, 1fr));
+  }
+}
+
+
+/* ElDokan v1.75.51 - home page mobile/tablet fix */
+@media (max-width: 1023px) {
+  .eldokan-home section {
+    overflow: hidden;
+  }
+
+  .eldokan-home .eldokan-home-line-chart {
+    min-height: 250px;
+  }
+
+  .eldokan-home .eldokan-home-pie-chart {
+    max-width: 180px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .eldokan-home .recharts-surface {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-width: 767px) {
+  .eldokan-home header {
+    align-items: flex-start;
+  }
+
+  .eldokan-home header > div:last-child {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .eldokan-home .rounded-3xl {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .eldokan-home .text-3xl.font-black,
+  .eldokan-home .text-4xl.font-black {
+    line-height: 1.15;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .eldokan-home .eldokan-home-pie-chart {
+    max-width: 200px;
+  }
+}
+
+
+/* ElDokan v1.75.52 - production-safe Home responsive hardening */
+.eldokan-home,
+.eldokan-home > div,
+.eldokan-home section,
+.eldokan-home section > div {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@media (max-width: 1023px) {
+  .eldokan-home {
+    overflow-x: clip;
+  }
+
+  .eldokan-home section {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .eldokan-home .eldokan-home-line-chart {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .eldokan-home .eldokan-home-line-chart .recharts-responsive-container {
+    min-width: 0 !important;
+    max-width: 100% !important;
+  }
+
+  .eldokan-home .eldokan-home-pie-chart {
+    width: 180px !important;
+    max-width: 100% !important;
+    flex: 0 0 auto;
+    overflow: visible;
+  }
+
+  .eldokan-home .eldokan-home-pie-chart svg {
+    display: block;
+    width: 180px !important;
+    max-width: 180px !important;
+    height: 180px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .eldokan-home .eldokan-home-pie-chart {
+    width: 168px !important;
+    height: 168px !important;
+  }
+
+  .eldokan-home .eldokan-home-pie-chart svg {
+    width: 168px !important;
+    max-width: 168px !important;
+    height: 168px !important;
+  }
+
+  .eldokan-home .recharts-legend-wrapper {
+    max-width: 100% !important;
+  }
+}
+
+@media (max-width: 359px) {
+  .eldokan-home .eldokan-home-pie-chart {
+    width: 152px !important;
+    height: 152px !important;
+  }
+
+  .eldokan-home .eldokan-home-pie-chart svg {
+    width: 152px !important;
+    max-width: 152px !important;
+    height: 152px !important;
+  }
+}
